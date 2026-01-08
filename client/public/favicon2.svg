@@ -1,0 +1,31 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Camera gradient -->
+    <linearGradient id="gradCam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff512f"></stop>
+      <stop offset="50%" stop-color="#dd2476"></stop>
+      <stop offset="100%" stop-color="#24c6dc"></stop>
+    </linearGradient>
+
+    <!-- Lens gradient -->
+    <linearGradient id="gradLens" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7f00ff"></stop>
+      <stop offset="100%" stop-color="#24c6dc"></stop>
+    </linearGradient>
+  </defs>
+
+  <!-- Camera body -->
+  <rect x="30" y="50" rx="24" ry="24" width="140" height="90" fill="url(#gradCam)"></rect>
+
+  <!-- Camera top -->
+  <rect x="70" y="35" rx="12" ry="12" width="60" height="28" fill="#7f00ff"></rect>
+
+  <!-- Lens outer -->
+  <circle cx="100" cy="95" r="30" fill="#ffffff"></circle>
+
+  <!-- Lens inner -->
+  <circle cx="100" cy="95" r="20" fill="url(#gradLens)"></circle>
+
+  <!-- Spark / AI touch -->
+  <polygon points="150,55 156,68 170,74 156,80 150,94 144,80 130,74 144,68" fill="#ffcc00"></polygon>
+</svg>

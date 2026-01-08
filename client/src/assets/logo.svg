@@ -1,0 +1,35 @@
+<svg width="420" height="180" viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradCam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff512f"></stop>
+      <stop offset="50%" stop-color="#dd2476"></stop>
+      <stop offset="100%" stop-color="#24c6dc"></stop>
+    </linearGradient>
+
+    <linearGradient id="gradText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff512f"></stop>
+      <stop offset="50%" stop-color="#7f00ff"></stop>
+      <stop offset="100%" stop-color="#24c6dc"></stop>
+    </linearGradient>
+  </defs>
+
+  <!-- Camera body -->
+  <rect x="20" y="30" rx="22" ry="22" width="120" height="80" fill="url(#gradCam)"></rect>
+
+  <!-- Camera top -->
+  <rect x="50" y="18" rx="10" ry="10" width="60" height="24" fill="#7f00ff"></rect>
+
+  <!-- Lens outer -->
+  <circle cx="80" cy="70" r="28" fill="#ffffff"></circle>
+
+  <!-- Lens inner -->
+  <circle cx="80" cy="70" r="18" fill="url(#gradText)"></circle>
+
+  <!-- Spark -->
+  <polygon points="120,35 126,48 140,54 126,60 120,74 114,60 100,54 114,48" fill="#ffcc00"></polygon>
+
+  <!-- Text -->
+  <text x="165" y="90" font-size="56" font-weight="700" font-family="Poppins, Arial, sans-serif" fill="url(#gradText)">
+    ImGen
+  </text>
+</svg>

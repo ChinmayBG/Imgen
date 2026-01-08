@@ -1,0 +1,37 @@
+<svg width="220" height="260" viewBox="0 0 220 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Camera gradient -->
+    <linearGradient id="gradCam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff512f"></stop>
+      <stop offset="50%" stop-color="#dd2476"></stop>
+      <stop offset="100%" stop-color="#24c6dc"></stop>
+    </linearGradient>
+
+    <!-- Text gradient -->
+    <linearGradient id="gradText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff512f"></stop>
+      <stop offset="50%" stop-color="#7f00ff"></stop>
+      <stop offset="100%" stop-color="#24c6dc"></stop>
+    </linearGradient>
+  </defs>
+
+  <!-- Camera body -->
+  <rect x="40" y="30" rx="22" ry="22" width="140" height="90" fill="url(#gradCam)"></rect>
+
+  <!-- Camera top -->
+  <rect x="80" y="15" rx="10" ry="10" width="60" height="26" fill="#7f00ff"></rect>
+
+  <!-- Lens outer -->
+  <circle cx="110" cy="75" r="30" fill="#ffffff"></circle>
+
+  <!-- Lens inner -->
+  <circle cx="110" cy="75" r="20" fill="url(#gradText)"></circle>
+
+  <!-- Spark -->
+  <polygon points="165,35 171,48 185,54 171,60 165,73 159,60 145,54 159,48" fill="#ffcc00"></polygon>
+
+  <!-- Brand name BELOW logo -->
+  <text x="110" y="185" text-anchor="middle" font-size="48" font-weight="700" font-family="Poppins, Arial, sans-serif" fill="url(#gradText)">
+    ImGen
+  </text>
+</svg>
