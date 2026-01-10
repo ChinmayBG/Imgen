@@ -1,10 +1,9 @@
 import userModel from "../models/userModel.js";
 import bycrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { Model } from "mongoose";
 
 // function for user registration 
-const userRegistration = async (req,res) => {
+const userRegister = async (req,res) => {
   try {
     const { name, email, password } = req.body;
 
@@ -15,13 +14,13 @@ const userRegistration = async (req,res) => {
     const salt = await bycrypt.genSalt(10)
     const hashedPassword = await bycrypt.hash(password, salt)
     
-    const userData = {
-      user,
+    const userData = { 
+      name,
       email,
       password: hashedPassword
     }
 
-    const newUser = new Model(userData);
+    const newUser = new userModel(userData);
     const user = await newUser.save();
 
     const token = jwt.sign({id: user._id},process.env.JWT_SECRET)
@@ -34,7 +33,7 @@ const userRegistration = async (req,res) => {
   }
 }
 
-const loginUser = async () => {
+const userLogin = async (req,res) => {
   
   try {
     const { email, password } = req.body;
@@ -42,7 +41,7 @@ const loginUser = async () => {
 
     // if user not exits login is not possible
     if (!user) {
-      return res({success:false , message:"User doesnt exist"})
+      return res.json({success:false , message:"User doesnt exist"})
     }
 
     //if user exists then we check for password 
@@ -53,7 +52,7 @@ const loginUser = async () => {
       
       res.json({success:true,token,user:{name:user.name}})
     } else {
-      return res({success:false,message:"Invalid credentials"})
+      return res.json({success:false,message:"Invalid credentials"})
     }
     
   } catch (error) {
@@ -61,3 +60,20 @@ const loginUser = async () => {
     res.json({success:false , message:error.message})
   }  
 } 
+
+//controller function for credits
+const userCredits = async (req,res) => {
+  try {
+    const userId = req.user.id 
+    
+    //find user with given userId 
+    const user = await userModel.findById(userId)
+
+    res.json({success:true,credits:user.creditBalance,user:{name:user.name}})
+    
+  } catch (error) {
+    console.log(error)
+    res.json({success:false,message:error.message})
+  }
+}
+export {userRegister,userLogin,userCredits}
