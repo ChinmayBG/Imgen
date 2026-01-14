@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
 import { motion } from 'motion/react'
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Result = () => {
 
@@ -8,10 +13,34 @@ const Result = () => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState('');
+  const {generateImage}=useContext(AppContext)
+  const navigate = useNavigate();
+  const { credit } = useContext(AppContext);
 
+  useEffect(() => {
+    if (credit !==null && credit === 0 ) {
+      toast.warn("No credits left");
+      navigate('/buy')
+    }
+  }, [credit])
+  
   const onSubmitHandler = async (e) => {
+    e.preventDefault();
     
+    if (!input || loading) return;
+
+    setLoading(true)
+    
+    const image = await generateImage(input)
+    
+    if (image) {
+      setIsImageLoaded(true)
+      setImage(image)      
+    }
+
+    setLoading(false);
   }
+
   
   return (
     <motion.form onSubmit={onSubmitHandler} className="flex flex-col justify-center items-center min-h-[90vh]"
@@ -48,4 +77,4 @@ const Result = () => {
 };
 
 export default Result;
-Result;
+

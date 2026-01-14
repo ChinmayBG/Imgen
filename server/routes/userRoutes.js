@@ -1,5 +1,5 @@
 import express from 'express'
-import { userRegister,userLogin, userCredits } from '../controllers/userController.js'
+import { userRegister,userLogin, userCredits, paymentRazorPay, verifyRazorpay } from '../controllers/userController.js'
 import userAuth from '../middlewares/auth.js';
 
 const userRouter = express.Router();
@@ -7,7 +7,9 @@ const userRouter = express.Router();
 //creating endpoint path 
 userRouter.post('/register', userRegister)
 userRouter.post('/login', userLogin)
-userRouter.post('/credits',userAuth,userCredits)
+userRouter.get('/credits',userAuth,userCredits)
+userRouter.post('/buy-razor', userAuth, paymentRazorPay)
+userRouter.post('/verify', verifyRazorpay)
 
 export default userRouter; 
 

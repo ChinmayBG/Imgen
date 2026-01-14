@@ -1,30 +1,31 @@
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken";
 
-// we will create middleware functions here
-const userAuth = async (req,res,next) => {
-  
-  //we will get token from req's header
-  const { token } = req.headers;
-
-  if (!token) {
-    return res.json({success:false , message:"Token Unauthorised.Login Again"})
-  }
+const userAuth = (req, res, next) => {
   try {
-    const tokenDecode = jwt.verify(token, process.env.JWT_SECRET)
-    
-    if (tokenDecode.id) {
-      req.user = { id: tokenDecode.id };
-    } else {
-      return res.json({success:false , message:"Not authorised.Login Again"})
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({
+        success: false,
+        message: "Token missing. Login again"
+      });
     }
 
-    next();
+    const token = authHeader.split(" ")[1];
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    req.user = { id: decoded.id };
+
+    next(); 
 
   } catch (error) {
-    console.log(error)
-    res.json({success:false,message:error.message})
+    console.error("JWT ERROR:", error.message);
+    return res.status(401).json({
+      success: false,
+      message: "Invalid or expired token"
+    });
   }
-  
-}
+};
 
 export default userAuth;
