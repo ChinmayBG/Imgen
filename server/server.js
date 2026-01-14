@@ -14,9 +14,12 @@ app.use(cors({
     "http://localhost:5173",
     "https://imgen-ten.vercel.app"
   ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "token"],
 }));
+
+app.options("*", cors()); // ✅ IMPORTANT for preflight
+app.use(express.json());
 
 
 
