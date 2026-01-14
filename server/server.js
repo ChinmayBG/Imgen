@@ -12,10 +12,12 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://imgen.vercel.app"
-  ]
-}))
-app.use(express.json())
+    "https://imgen-ten.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 
 
 //calling function to conneect mongodb database with express app
